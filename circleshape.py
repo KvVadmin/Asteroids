@@ -20,3 +20,15 @@ class CircleShape(pygame.sprite.Sprite):
     def update(self, dt):
         # sub-classes must override
         pass
+
+    def collision(self, player):
+        distance = self.position.distance_to(player.position)
+        sum_radii = self.radius + player.radius
+        return distance <= sum_radii
+    
+        #Core principles of OOP explained for this test project:
+
+        #By putting the collision method in the parent class: 
+        # All child classes get it automatically (Inheritance)
+        # The logic is defined in one place (Encapsulation)
+        # It works with any CircleShape object (Polymorphism)

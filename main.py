@@ -5,7 +5,6 @@ from asteroid import Asteroid
 from asteroidfield import AsteroidField
 
 
-
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -25,6 +24,7 @@ def main():
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     asteroid_field = AsteroidField()
+    
     dt = 0
     
 
@@ -42,10 +42,12 @@ def main():
             if event.type == pygame.QUIT:
                 return
             
-        
-
         for obj in updatable:
             obj.update(dt)
+
+        for asteroid in asteroids:
+            if asteroid.collision(player):
+                raise SystemExit ("Game over!")
 
         screen.fill("black")
 
