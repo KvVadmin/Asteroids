@@ -11,13 +11,13 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     
-    # creating groups/initialization code for groups to do actions in bulk
+    # creating groups/initialization code for groups to do actions in bulk using Sprite
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
     shots = pygame.sprite.Group()
     
-    #assign containers and definining class
+    #assign containers and definining class/adding all class objects to sprite groups
     Player.containers = (updatable, drawable)
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable,)
@@ -26,15 +26,8 @@ def main():
     
     #create an instance of Player class after assigning containers
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-    
     dt = 0
-    
 
-    #print("Starting asteroids!")
-    #print("Screen width: 1280")
-    #print("Screen height: 720")
-
-  
 
     #gameloop
     while True:
@@ -56,8 +49,10 @@ def main():
                 print("Looking for shots")
                 if asteroid.collision(shot):
                     print("Collision detected")
-                    asteroid.kill()
+                    asteroid.split()
                     shot.kill()
+                    
+                    
 
         screen.fill("black")
 
