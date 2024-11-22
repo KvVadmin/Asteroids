@@ -18,10 +18,7 @@ class Asteroid(CircleShape):
     def move(self, dt):
         self.position += self.velocity * dt
 
-    def collision(self, OtherCircleShape):
-        distance = pygame.math.Vector2.distance_to(self.position, OtherCircleShape.position)
-        sum_radii = self.radius + OtherCircleShape.radius
-        return distance <= sum_radii
+
 
 
         
